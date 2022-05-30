@@ -7,133 +7,159 @@
 	},
 	"item": [
 		{
-			"name": "get by city name",
+			"name": "tests get",
+			"item": [
+				{
+					"name": "get by geo coord",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.openweathermap.org/data/2.5/weather?appid=413d6f2d68929bb918009d95049e69da&lon=9&lat=34",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "appid",
+									"value": "413d6f2d68929bb918009d95049e69da"
+								},
+								{
+									"key": "lon",
+									"value": "9"
+								},
+								{
+									"key": "lat",
+									"value": "34"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "prévision 5 jours",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.openweathermap.org/data/2.5/onecall?lon=9&exclude=daily&appid=413d6f2d68929bb918009d95049e69da&lat=34",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"onecall"
+							],
+							"query": [
+								{
+									"key": "lon",
+									"value": "9"
+								},
+								{
+									"key": "exclude",
+									"value": "daily"
+								},
+								{
+									"key": "appid",
+									"value": "413d6f2d68929bb918009d95049e69da"
+								},
+								{
+									"key": "lat",
+									"value": "34"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by city name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.openweathermap.org/data/2.5/weather?q=tunisia&appid=413d6f2d68929bb918009d95049e69da",
+							"protocol": "https",
+							"host": [
+								"api",
+								"openweathermap",
+								"org"
+							],
+							"path": [
+								"data",
+								"2.5",
+								"weather"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "tunisia"
+								},
+								{
+									"key": "appid",
+									"value": "413d6f2d68929bb918009d95049e69da"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
 				{
 					"listen": "test",
 					"script": {
+						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"pm.test(\"get by country\", () => {\r",
-							"     pm.expect(pm.response.json()).to.have.property(\"name\",'Tunisia');\r",
-							"});\r",
-							"\r",
-							"pm.test(\"get by  id\", () => {\r",
-							"     pm.expect(pm.response.json()).to.have.property(\"id\", 2464461);\r",
-							"});"
-						],
-						"type": "text/javascript"
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"verify parameter country \", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"country\");",
+							"});",
+							"",
+							"pm.test(\"verify parameter id \", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"id\");",
+							"})",
+							""
+						]
 					}
 				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://api.openweathermap.org/data/2.5/weather?q=tunisia&appid=413d6f2d68929bb918009d95049e69da",
-					"protocol": "https",
-					"host": [
-						"api",
-						"openweathermap",
-						"org"
-					],
-					"path": [
-						"data",
-						"2.5",
-						"weather"
-					],
-					"query": [
-						{
-							"key": "q",
-							"value": "tunisia"
-						},
-						{
-							"key": "appid",
-							"value": "413d6f2d68929bb918009d95049e69da"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "get by geo coord",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://api.openweathermap.org/data/2.5/weather?appid=413d6f2d68929bb918009d95049e69da&lon=9&lat=34",
-					"protocol": "https",
-					"host": [
-						"api",
-						"openweathermap",
-						"org"
-					],
-					"path": [
-						"data",
-						"2.5",
-						"weather"
-					],
-					"query": [
-						{
-							"key": "appid",
-							"value": "413d6f2d68929bb918009d95049e69da"
-						},
-						{
-							"key": "lon",
-							"value": "9"
-						},
-						{
-							"key": "lat",
-							"value": "34"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "prévision 5 jours",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://api.openweathermap.org/data/2.5/onecall?lon=9&exclude=daily&appid=413d6f2d68929bb918009d95049e69da&lat=34",
-					"protocol": "https",
-					"host": [
-						"api",
-						"openweathermap",
-						"org"
-					],
-					"path": [
-						"data",
-						"2.5",
-						"onecall"
-					],
-					"query": [
-						{
-							"key": "lon",
-							"value": "9"
-						},
-						{
-							"key": "exclude",
-							"value": "daily"
-						},
-						{
-							"key": "appid",
-							"value": "413d6f2d68929bb918009d95049e69da"
-						},
-						{
-							"key": "lat",
-							"value": "34"
-						}
-					]
-				}
-			},
-			"response": []
+			]
 		},
 		{
 			"name": "post station",
